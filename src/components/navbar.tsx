@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge"
 import { ModeToggle } from "@/components/mode-toggle"
 import { ModelToggle, ModelToggleProps } from "@/components/model-toggle";
 
-// TODO: Add GPT model toggle button from 3.5 to 4
+
 export default function NavBar({model, setModel} : ModelToggleProps) {
 
     return (
