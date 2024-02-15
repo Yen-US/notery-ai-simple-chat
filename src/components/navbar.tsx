@@ -2,6 +2,7 @@ import HelpButton from "./help-mk-button";
 import { Badge } from "@/components/ui/badge"
 import { ModeToggle } from "@/components/mode-toggle"
 import { ModelToggle, ModelToggleProps } from "@/components/model-toggle";
+import UserLoginButton from "@/components/user-login";
 
 
 export default function NavBar({model, setModel} : ModelToggleProps) {
@@ -16,6 +17,7 @@ export default function NavBar({model, setModel} : ModelToggleProps) {
             <div className="flex align-center gap-2"><ModeToggle /> 
             <ModelToggle model={model} setModel={setModel} />
             <HelpButton />
+            <UserLoginButton />
             </div>
         </nav>
     );
