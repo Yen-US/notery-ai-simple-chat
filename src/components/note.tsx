@@ -1,24 +1,23 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { toast } from "@/components/ui/use-toast"
 import { Messages } from "@/components/message"
 import { useChat } from 'ai/react';
+import { ModelToggleProps } from "./model-toggle";
+import { toast } from "sonner"
 
-import { useEffect } from "react";
 
-export default function Note() {
+export default function Note({model} : ModelToggleProps) {
     const { messages, append, isLoading, input, setInput } =
         useChat({
-            api: "/api/note", initialInput: '', initialMessages: [{
+            api: "/api/note?model="+model, initialInput: '', initialMessages: [{
                 id: '1',
                 content: 'You are a helpful assistant answering to a note input, each time the user submits a note, you will respond with a useful completion to the note and or answer questions, provide useful feedback and recommendations inline, make them as brief as possible, you will be punished for long responses, and rewarded for short ones.',
                 role: 'system'
             }],
             onResponse(response) {
                 if (response.status === 401) {
-                    toast({
-                        title: "You submitted the following values:",
+                    toast.error("You submitted the following values:", {
                         description: (
                             <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
                                 <span className="text-white">{response.statusText}</span>
@@ -58,7 +57,6 @@ export default function Note() {
                 className="mt-10"
             >Send message</Button>
             </form>
-            {isLoading && <div className="absolute top-[300px] left-[300px] text-pretty text-md">Loading...</div>}
             <Messages messages = {messages}/>
         </article>
     );

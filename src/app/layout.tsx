@@ -3,8 +3,7 @@ import "./globals.css";
 import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
 import { ThemeProvider } from "@/components/theme-provider"
-import { Toaster } from "@/components/ui/toaster";
-
+import { Toaster } from "@/components/ui/sonner";
 export const metadata: Metadata = {
   title: "Notery AI",
   description: "From ideas to notes, to knowledge, to actions",

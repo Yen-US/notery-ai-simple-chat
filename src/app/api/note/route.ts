@@ -21,10 +21,13 @@ export async function GET(request: Request) {
 
  
 export async function POST(req: Request) {
+  const { searchParams } = new URL(req.url)
+  const modelVersion = searchParams.get('model') || 'gpt-3.5-turbo'
+  console.log('modelVersion', modelVersion)
   const { messages } = await req.json();
 
   const response = await openai.chat.completions.create({
-    model: 'gpt-3.5-turbo',
+    model: modelVersion,
     stream: true,
     messages: messages,
     temperature: 1,
