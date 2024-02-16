@@ -3,9 +3,10 @@ import { Badge } from "@/components/ui/badge"
 import { ModeToggle } from "@/components/mode-toggle"
 import { ModelToggle, ModelToggleProps } from "@/components/model-toggle";
 import UserLoginButton from "@/components/user-login";
+import { Session } from "next-auth";
 
 
-export default function NavBar({model, setModel} : ModelToggleProps) {
+export default function NavBar({model, setModel, session} : {model: string, setModel?: (model: string) => void, session: Session | null } ) {
 
     return (
         <nav className="flex items-center justify-around p-6">
@@ -15,7 +16,7 @@ export default function NavBar({model, setModel} : ModelToggleProps) {
             <Badge variant="outline"> v1.0 </Badge>
             </div>
             <div className="flex align-center gap-2"><ModeToggle /> 
-            <ModelToggle model={model} setModel={setModel} />
+            <ModelToggle model={model} setModel={setModel} session={session} />
             <HelpButton />
             <UserLoginButton />
             </div>

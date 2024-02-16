@@ -11,15 +11,20 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { toast } from "sonner"
+import { Session } from "next-auth"
 
 export interface ModelToggleProps {
   model: string;
   setModel?: (model: string) => void;
+  session: Session | null;
 }
 
-export function ModelToggle( {model, setModel} : ModelToggleProps){
+export function ModelToggle( {model, setModel, session} : ModelToggleProps){
   const changeModel = (newModel: string) => {
     if (model === newModel) {}
+    else if (newModel === "gpt-4" && session === null) {
+      toast.error("You need to be signed in to use the GPT 4 model.")
+    }
     else{
       setModel && setModel(newModel)
       if (newModel === "gpt-3.5-turbo") toast.success("Model changed to GPT 3.5")

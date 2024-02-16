@@ -3,11 +3,10 @@
 import { Button } from "@/components/ui/button"
 import { Messages } from "@/components/message"
 import { useChat } from 'ai/react';
-import { ModelToggleProps } from "./model-toggle";
+import { Session } from "next-auth";
 import { toast } from "sonner"
 
-
-export default function Note({model} : ModelToggleProps) {
+export default function Note({model, session} : {model: string, session: Session | null}) {
     const { messages, append, isLoading, input, setInput } =
         useChat({
             api: "/api/note?model="+model, initialInput: '', initialMessages: [{
@@ -27,8 +26,13 @@ export default function Note({model} : ModelToggleProps) {
                 }
             }
         })
-
+        
     const onSubmit = async (value: string) => {
+
+        if (session===null && messages.length > 2) {
+            toast.error("You need to be signed in to submit another comment to the note.")
+            return
+        }
         await append({
             content: value,
             role: 'user'

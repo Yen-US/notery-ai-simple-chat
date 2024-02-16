@@ -2,5 +2,5 @@ This is a project made by [YenUS](https://yenus.dev/) with [Next.js](https://nex
 In this project you can chat with GPT-4 and GPT-3.5 turbo to complete your notes or ask any question
 
 TODO:
-Implement chat limit for unauthenticated users
-Save login user info
+Save login user info on DB
+Add support me icon, basic subscription

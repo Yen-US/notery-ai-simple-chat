@@ -8,15 +8,15 @@ export const metadata: Metadata = {
   title: "Notery AI",
   description: "From ideas to notes, to knowledge, to actions",
 };
-import { getServerSession } from "next-auth";
 import SessionProvider from "@/components/SessionProvider";
+
 
 export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await getServerSession();
+  
   return (
     <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <body className="min-h-screen bg-background antialiased"><ThemeProvider
