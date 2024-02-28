@@ -4,6 +4,7 @@ import { ModeToggle } from "@/components/mode-toggle"
 import { ModelToggle, ModelToggleProps } from "@/components/model-toggle";
 import UserLoginButton from "@/components/user-login";
 import { Session } from "next-auth";
+import SupportButton from "@/components/support-button";
 
 
 export default function NavBar({model, setModel, session} : {model: string, setModel?: (model: string) => void, session: Session | null } ) {
@@ -15,7 +16,9 @@ export default function NavBar({model, setModel, session} : {model: string, setM
             <Badge variant="outline"> simple chat </Badge>
             <Badge variant="outline"> v1.0 </Badge>
             </div>
-            <div className="flex align-center gap-2"><ModeToggle /> 
+            <div className="flex align-center gap-2">
+            <SupportButton />
+            <ModeToggle /> 
             <ModelToggle model={model} setModel={setModel} session={session} />
             <HelpButton />
             <UserLoginButton />
