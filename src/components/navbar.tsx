@@ -7,10 +7,10 @@ import { Session } from "next-auth";
 import SupportButton from "@/components/support-button";
 
 
-export default function NavBar({model, setModel, session} : {model: string, setModel?: (model: string) => void, session: Session | null } ) {
+export default function NavBar({model, setModel, session, className} : {model: string, setModel?: (model: string) => void, session: Session | null, className: string } ) {
 
     return (
-        <nav className="flex items-center justify-around p-6">
+        <nav className={className}>
             <div className="flex items-center gap-2">
             <h1 className="text-xl">Notery</h1>
             <Badge variant="outline"> simple chat </Badge>

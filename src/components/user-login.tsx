@@ -50,15 +50,20 @@ export default function UserLoginButton() {
           <DropdownMenuTrigger asChild>
 
             <TooltipTrigger asChild>
-              <Button variant="outline" size="icon">
+              <Button variant="outline" className="flex justify-between relative" size="icon">
                 {session ? (
-                  <Avatar className="h-7 w-7">
+                  <Avatar className="absolute left-[3px] h-7 w-7">
                     <AvatarImage src={session.user?.image ?? ''} />
                     <AvatarFallback>{session.user?.name ?? ''}</AvatarFallback>
                   </Avatar>
                 ) : (
-                  <PersonIcon className="absolute h-[1.2rem] w-[1.2rem] transition-all" />
+                  <PersonIcon className="absolute left-2 h-[1.2rem] w-[1.2rem] transition-all" />
                 )}
+                <h2 className="absolute left-12  text-md sm:hidden">{session ? (
+            'Hi! ' + session?.user?.name ?? ''
+          ) : (
+            'Who are you?'
+          )}</h2>
               </Button>
             </TooltipTrigger>
 
@@ -70,7 +75,7 @@ export default function UserLoginButton() {
             {session ? <DropdownMenuItem onClick={() => signOut()}>Sign Out</DropdownMenuItem> : <DropdownMenuItem onClick={() => signIn()}>Sign In</DropdownMenuItem>}
           </DropdownMenuContent>
         </DropdownMenu>
-        <TooltipContent>
+        <TooltipContent className="sm:block hidden">
           <p>{session ? (
             'Hi! ' + session?.user?.name ?? ''
           ) : (

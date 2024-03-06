@@ -16,11 +16,12 @@ export default function HelpButton() {
         <TooltipProvider>
             <Tooltip>
                 <TooltipTrigger asChild>
-                    <Button variant="outline" size="icon" onClick={() => openInNewTab('https://www.markdownguide.org/basic-syntax/')}>
-                        <QuestionMarkIcon className="absolute h-[1.2rem] w-[1.2rem] transition-all" />
+                    <Button className="flex justify-between relative" variant="outline" size="icon" onClick={() => openInNewTab('https://www.markdownguide.org/basic-syntax/')}>
+                        <QuestionMarkIcon className="absolute left-2 h-[1.2rem] w-[1.2rem] transition-all" />
+                        <h2 className="absolute left-12  text-md sm:hidden">You can use markdown!</h2>
                     </Button>
                 </TooltipTrigger>
-                <TooltipContent>
+                <TooltipContent className="sm:block hidden">
                     <p>You can use markdown!</p>
                 </TooltipContent>
             </Tooltip>

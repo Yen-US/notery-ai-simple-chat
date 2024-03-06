@@ -47,10 +47,10 @@ export function ModelToggle({ model, setModel, session }: ModelToggleProps) {
           <DropdownMenuTrigger asChild>
 
             <TooltipTrigger asChild>
-              <Button variant="outline" size="icon">
-                <StarFilledIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                <StarIcon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                <span className="sr-only">Set model</span>
+              <Button className="flex justify-between relative" variant="outline" size="icon">
+                <StarFilledIcon className="absolute left-2 h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                <StarIcon className="absolute left-2 h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                <h2 className="absolute left-12  text-md sm:hidden">Smart or dumb GPT?</h2>
               </Button>
             </TooltipTrigger>
 
@@ -64,7 +64,7 @@ export function ModelToggle({ model, setModel, session }: ModelToggleProps) {
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-        <TooltipContent>
+        <TooltipContent className="sm:block hidden">
           <p>Smart or dumb GPT?</p>
         </TooltipContent>
       </Tooltip>
