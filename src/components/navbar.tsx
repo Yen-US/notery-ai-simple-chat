@@ -1,3 +1,4 @@
+'use client'
 import HelpButton from "./help-mk-button";
 import { Badge } from "@/components/ui/badge"
 import { ModeToggle } from "@/components/mode-toggle"

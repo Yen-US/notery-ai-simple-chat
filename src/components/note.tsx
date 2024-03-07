@@ -24,6 +24,7 @@ export default function Note({model, session} : {model: string, session: Session
                         ),
                     })
                 }
+                
             }
         })
         
@@ -37,6 +38,7 @@ export default function Note({model, session} : {model: string, session: Session
             content: value,
             role: 'user'
         })
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
     }
     return (
         <article className="relative flex items-center flex-col p-6">
