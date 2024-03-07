@@ -13,9 +13,9 @@ export default function NavbarNoteParentComponent({session} : {session: Session 
 
     useEffect(() => {
       const checkScroll = () => {
-        if (!visible && window.scrollY > 20) {
+        if (!visible && window.scrollY > 100) {
           setVisible(true);
-        } else if (visible && window.scrollY <= 20) {
+        } else if (visible && window.scrollY <= 100) {
           setVisible(false);
         }
       };
@@ -36,7 +36,7 @@ export default function NavbarNoteParentComponent({session} : {session: Session 
       <Note model={model} session={session}/>
       </div>
       
-      <Button className={`bottom-6 right-6 ${visible ? 'opacity-1' : 'opacity-0' } fixed transition-all`} onClick={backToTop}>Top</Button>
+      <Button size='sm' className={`bottom-6 right-6 ${visible ? 'opacity-1' : 'opacity-0' } fixed transition-all text-sm ml-2`} onClick={backToTop}>Top</Button>
       
     </div>
   );
