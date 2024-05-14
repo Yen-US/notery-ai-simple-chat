@@ -28,13 +28,13 @@ export interface ModelToggleProps {
 export function ModelToggle({ model, setModel, session }: ModelToggleProps) {
   const changeModel = (newModel: string) => {
     if (model === newModel) { }
-    else if (newModel === "gpt-4" && session === null) {
-      toast.error("You need to be signed in to use the GPT 4 model.")
+    else if (newModel === "gpt-4o" && session === null) {
+      toast.error("You need to be signed in to use the GPT 4o model.")
     }
     else {
       setModel && setModel(newModel)
       if (newModel === "gpt-3.5-turbo") toast.success("Model changed to GPT 3.5")
-      else if (newModel === "gpt-4") toast.success("Model changed to GPT 4")
+      else if (newModel === "gpt-4o") toast.success("Model changed to GPT 4o")
 
     }
 
@@ -59,8 +59,8 @@ export function ModelToggle({ model, setModel, session }: ModelToggleProps) {
             <DropdownMenuItem onClick={() => changeModel("gpt-3.5-turbo")}>
               GPT 3.5
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => changeModel("gpt-4")}>
-              GPT 4
+            <DropdownMenuItem onClick={() => changeModel("gpt-4o")}>
+              GPT 4o
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
