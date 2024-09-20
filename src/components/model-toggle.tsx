@@ -26,19 +26,24 @@ export interface ModelToggleProps {
 }
 
 export function ModelToggle({ model, setModel, session }: ModelToggleProps) {
+  const modelsOptions = [
+    { label: "GPT 3.5 turbo", value: "gpt-3.5-turbo" },
+    { label: "GPT 4o", value: "gpt-4o" },
+    { label: "GPT 4o mini", value: "gpt-4o-mini" },
+    { label: "GPT 4 turbo", value: "gpt-4-turbo" }
+  ];
+  
   const changeModel = (newModel: string) => {
-    if (model === newModel) { }
-    else if (newModel === "gpt-4o" && session === null) {
-      toast.error("You need to be signed in to use the GPT 4o model.")
+    if (session === null) {
+      toast.error("You need to be signed in to change the model.");
+      return;
     }
-    else {
-      setModel && setModel(newModel)
-      if (newModel === "gpt-3.5-turbo") toast.success("Model changed to GPT 3.5")
-      else if (newModel === "gpt-4o") toast.success("Model changed to GPT 4o")
-
+  
+    if (model !== newModel) {
+      setModel && setModel(newModel);
+      toast.success(`Model changed to ${modelsOptions.find(opt => opt.value === newModel)?.label}`);
     }
-
-  }
+  };
 
   return (
     <TooltipProvider>
@@ -56,12 +61,12 @@ export function ModelToggle({ model, setModel, session }: ModelToggleProps) {
 
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuItem onClick={() => changeModel("gpt-3.5-turbo")}>
-              GPT 3.5
+          {modelsOptions.map((option) => (
+            <DropdownMenuItem key={option.value} onClick={() => changeModel(option.value)}>
+              {option.label}
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => changeModel("gpt-4o")}>
-              GPT 4o
-            </DropdownMenuItem>
+          
+          ))}
           </DropdownMenuContent>
         </DropdownMenu>
         <TooltipContent className="sm:block hidden">
