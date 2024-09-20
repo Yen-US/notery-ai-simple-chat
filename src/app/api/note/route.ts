@@ -26,10 +26,10 @@ export async function POST(req: Request) {
   const { messages } = await req.json();
   let response
 
-  if (modelVersion === 'dall-e-3' ) {
+  if (modelVersion === 'dall-e-3' || modelVersion === 'dall-e-2') {
     response = await openai.images.generate({
-      model: "dall-e-3",
-      prompt: "a white siamese cat",
+      model: modelVersion,
+      prompt: messages[1].content,
       n: 1,
       size: imageSize,
     });

@@ -40,7 +40,7 @@ export default function Note({model, session, size} : NoteProps) {
             toast.error("You need to be signed in to submit another comment")
             return
         }
-        if (session===null && model === "dall-e-3") {
+        if (session===null && (model === "dall-e-3" || model === "dall-e-2")) {
             toast.error("You need to be signed in to generate images.")
             return
         }

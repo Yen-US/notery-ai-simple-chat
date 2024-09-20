@@ -31,7 +31,7 @@ export default function NavBar({model, setModel, session, size, setSize, classNa
             <SupportButton />
             <ModeToggle /> 
             <ModelToggle model={model} setModel={setModel} session={session} />
-            {model === "dall-e-3" && <SizeToggle size={size} setSize={setSize} session={session} />}
+            {(model === "dall-e-3" || model === "dall-e-2") && <SizeToggle size={size} setSize={setSize} session={session} />}
             <HelpButton />
             <UserLoginButton />
             </div>

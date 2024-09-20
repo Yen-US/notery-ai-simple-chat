@@ -32,6 +32,8 @@ export function ModelToggle({ model, setModel, session }: ModelToggleProps) {
     { label: "GPT 4o mini", value: "gpt-4o-mini" },
     { label: "GPT 4 turbo", value: "gpt-4-turbo" },
     { label: "Dall-E 3", value: "dall-e-3" },
+    { label: "Dall-E 2", value: "dall-e-2" },
+
   ];
   
   const changeModel = (newModel: string) => {
