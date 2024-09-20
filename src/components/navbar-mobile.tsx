@@ -51,7 +51,7 @@ export default function NavBarMobile({ model, setModel, session, size, setSize, 
                     </SheetContent>
                 </Sheet>
                 
-                {(model === "dall-e-3" || model === "dall-e-2") && <SizeToggle size={size} setSize={setSize} session={session} />}
+                {(model === "dall-e-3" || model === "dall-e-2") && <SizeToggle size={size} setSize={setSize} model={model} session={session} />}
 
                 
             </div>

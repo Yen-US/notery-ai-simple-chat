@@ -23,11 +23,17 @@ export interface SizeToggleProps {
   size: string;
   setSize?: (model: string) => void;
   session: Session | null;
+  model: string;
 }
 
-export function SizeToggle({ size, setSize, session}: SizeToggleProps) {
+export function SizeToggle({ size, setSize, session, model }: SizeToggleProps) {
 
-  const sizeOptions = [
+  const sizeOptionsDalle2 = [
+    { label: "256 x 256", value: "256x256" },
+    { label: "512 x 512", value: "512x512" },
+    { label: "1024 x 1024", value: "1024x1024" },
+  ];
+  const sizeOptionsDalle3 = [
     { label: "1024 x 1024", value: "1024x1024" },
     { label: "1024 x 1792", value: "1024x1792" },
     { label: "1792 x 1024", value: "1792x1024" }
@@ -38,10 +44,10 @@ export function SizeToggle({ size, setSize, session}: SizeToggleProps) {
       toast.error("You need to be signed in to change the size.");
       return;
     }
-  
+
     if (size !== newSize) {
       setSize && setSize(newSize);
-      toast.success(`Size changed to ${sizeOptions.find(opt => opt.value === newSize)?.label}`);
+      toast.success(`Size changed to ${newSize}`);
     }
   };
 
@@ -59,10 +65,13 @@ export function SizeToggle({ size, setSize, session}: SizeToggleProps) {
             </TooltipTrigger>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            {sizeOptions.map((option) => (
+            {model === "dall-e-3" ? sizeOptionsDalle3.map((option) => (
               <DropdownMenuItem key={option.value} onClick={() => changeSize(option.value)}>
                 {option.label}
               </DropdownMenuItem>
+            )) : sizeOptionsDalle2.map((option) => (<DropdownMenuItem key={option.value} onClick={() => changeSize(option.value)}>
+              {option.label}
+            </DropdownMenuItem>
             ))}
           </DropdownMenuContent>
         </DropdownMenu>
