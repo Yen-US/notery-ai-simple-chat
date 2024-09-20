@@ -30,7 +30,8 @@ export function ModelToggle({ model, setModel, session }: ModelToggleProps) {
     { label: "GPT 3.5 turbo", value: "gpt-3.5-turbo" },
     { label: "GPT 4o", value: "gpt-4o" },
     { label: "GPT 4o mini", value: "gpt-4o-mini" },
-    { label: "GPT 4 turbo", value: "gpt-4-turbo" }
+    { label: "GPT 4 turbo", value: "gpt-4-turbo" },
+    { label: "Dall-E 3", value: "dall-e-3" },
   ];
   
   const changeModel = (newModel: string) => {
@@ -65,7 +66,6 @@ export function ModelToggle({ model, setModel, session }: ModelToggleProps) {
             <DropdownMenuItem key={option.value} onClick={() => changeModel(option.value)}>
               {option.label}
             </DropdownMenuItem>
-          
           ))}
           </DropdownMenuContent>
         </DropdownMenu>

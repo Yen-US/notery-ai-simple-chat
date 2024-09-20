@@ -15,17 +15,25 @@ import {
 } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
 import { HamburgerMenuIcon } from "@radix-ui/react-icons"
+import { SizeToggle } from "@/components/size-toggle";
+export interface NavbarProps {
+    model: string, 
+    setModel?: (model: string) => void, 
+    session: Session | null, 
+    size: string;
+    setSize?: (model: string) => void;
+    className: string 
+  }
 
 
-
-export default function NavBarMobile({ model, setModel, session, className }  : { model: string, setModel?: (model: string) => void, session: Session | null, className: string }) {
+export default function NavBarMobile({ model, setModel, session, size, setSize,  className }  : NavbarProps) {
 
     return (
         <nav className={className}>
             <div className="flex items-center gap-2">
                 <h1 className="text-xl">Notery</h1>
                 <Badge variant="outline"> simple chat </Badge>
-                <Badge variant="outline"> v1.0 </Badge>
+                <Badge variant="outline"> v1.1 </Badge>
             </div>
             <div className="flex align-center gap-2">
                 <Sheet>
@@ -42,6 +50,8 @@ export default function NavBarMobile({ model, setModel, session, className }  : 
                         </SheetHeader>
                     </SheetContent>
                 </Sheet>
+                
+                {model === "dall-e-3" && <SizeToggle size={size} setSize={setSize} session={session} />}
 
                 
             </div>

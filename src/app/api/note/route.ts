@@ -22,18 +22,36 @@ export async function GET(request: Request) {
 export async function POST(req: Request) {
   const { searchParams } = new URL(req.url)
   const modelVersion = searchParams.get('model') || 'gpt-3.5-turbo'
-  console.log('modelVersion', modelVersion)
+  const imageSize = searchParams.get('size') as "256x256" | "512x512" | "1024x1024" | "1792x1024" | "1024x1792" | null | undefined || "1024x1024"
   const { messages } = await req.json();
+  let response
 
-  const response = await openai.chat.completions.create({
-    model: modelVersion,
-    stream: true,
-    messages: messages,
-    temperature: 1,
-    max_tokens: 150,
-  })
+  if (modelVersion === 'dall-e-3' ) {
+    response = await openai.images.generate({
+      model: "dall-e-3",
+      prompt: "a white siamese cat",
+      n: 1,
+      size: imageSize,
+    });
+
+    const image =  `![imageGenerated](${response.data[0].url})`
+
+    return new Response(image)
+  }else{
+    response = await openai.chat.completions.create({
+      model: modelVersion,
+      stream: true,
+      messages: messages,
+      temperature: 1,
+      max_tokens: 150,
+    })
+
+    const stream = OpenAIStream(response)
  
-  const stream = OpenAIStream(response)
+    return new StreamingTextResponse(stream)
+  }
+
+  
  
-  return new StreamingTextResponse(stream)
+  
 }

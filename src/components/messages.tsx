@@ -6,10 +6,16 @@ import { useChat } from 'ai/react';
 import { Session } from "next-auth";
 import { toast } from "sonner"
 
-export default function Note({model, session} : {model: string, session: Session | null}) {
+export interface NoteProps {
+    model: string, 
+    session: Session | null, 
+    size: string;
+  }
+
+export default function Note({model, session, size} : NoteProps) {
     const { messages, append, isLoading, input, setInput } =
         useChat({
-            api: "/api/note?model="+model, initialInput: '', initialMessages: [{
+            api: "/api/note?model="+model+"&size="+size, initialInput: '' , initialMessages: [{
                 id: '1',
                 content: 'You are a helpful assistant answering to a note input, each time the user submits a note, you will respond with a useful completion to the note and or answer questions, provide useful feedback and recommendations inline, make them as brief as possible, you will be punished for long responses, and rewarded for short ones.',
                 role: 'system'
@@ -31,7 +37,11 @@ export default function Note({model, session} : {model: string, session: Session
     const onSubmit = async (value: string) => {
 
         if (session===null && messages.length > 2) {
-            toast.error("You need to be signed in to submit another comment to the note.")
+            toast.error("You need to be signed in to submit another comment")
+            return
+        }
+        if (session===null && model === "dall-e-3") {
+            toast.error("You need to be signed in to generate images.")
             return
         }
         await append({
