@@ -37,6 +37,19 @@ export async function POST(req: Request) {
     const image =  `![imageGenerated](${response.data[0].url})`
 
     return new Response(image)
+  }else if (modelVersion === 'o1-preview' || modelVersion === 'o1-mini') {
+    response = await openai.chat.completions.create({
+      model: modelVersion,
+      stream: true,
+      messages: [messages[1]],
+      temperature: 1,
+      max_tokens: 150,
+    })
+
+    
+    const stream = OpenAIStream(response)
+ 
+    return new StreamingTextResponse(stream)
   }else{
     response = await openai.chat.completions.create({
       model: modelVersion,
