@@ -40,16 +40,10 @@ export async function POST(req: Request) {
   }else if (modelVersion === 'o1-preview' || modelVersion === 'o1-mini') {
     response = await openai.chat.completions.create({
       model: modelVersion,
-      stream: true,
       messages: [messages[1]],
-      temperature: 1,
-      max_tokens: 150,
     })
 
-    
-    const stream = OpenAIStream(response)
- 
-    return new StreamingTextResponse(stream)
+    return response.choices[0].message.content
   }else{
     response = await openai.chat.completions.create({
       model: modelVersion,
