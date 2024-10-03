@@ -43,7 +43,7 @@ export async function POST(req: Request) {
       messages: [messages[1]],
     })
 
-    return response.choices[0].message.content
+    return new Response(response.choices[0].message.content)
   }else{
     response = await openai.chat.completions.create({
       model: modelVersion,
